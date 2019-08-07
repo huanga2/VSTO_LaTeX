@@ -1,0 +1,48 @@
+﻿<Window x:Class="LaTeX_UI.Insert_latex_view"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LaTeX_UI"
+             mc:Ignorable="d" 
+             FontSize="14"
+             Height="450"
+             Width="800"
+             d:DesignHeight="450" d:DesignWidth="800" Title="Insert LaTeX">
+    <Window.DataContext>
+        <local:Insert_latex_viewmodel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Height="30" Margin="5">
+            <DockPanel LastChildFill="True">
+                <Label Content="Image Format:" DockPanel.Dock="Left"/>
+                <ComboBox DockPanel.Dock="Left" Width="100" ItemsSource="{Binding ImageTypes}" SelectedIndex="{Binding SelectedImageTypeIndex}" VerticalContentAlignment="Center"/>
+                <Label Content="DPI:" DockPanel.Dock="Left"/>
+                <TextBox Text="{Binding DPIString, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center" Width="100" DockPanel.Dock="Left" Height="21"/>
+                <Grid/>
+            </DockPanel>
+        </Grid>
+        <Grid Grid.Row="1" Margin="5">
+            <TextBox FontFamily="Consolas" AcceptsReturn="True" AcceptsTab="True" 
+                     FontSize="14"
+                     ScrollViewer.CanContentScroll="True"
+                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     Text="{Binding LatexText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        </Grid>
+        <Grid Grid.Row="2" Height="30" Margin="5">
+            <DockPanel LastChildFill="True">
+                <Button Click="Generate_Click" Content="Generate" DockPanel.Dock="Right" Width="75" Height="25"/>
+                <Label Content="Font size:" DockPanel.Dock="Left"/>
+                <TextBox DockPanel.Dock="Left" Width="75" VerticalContentAlignment="Center" Text="{Binding FontSizeString}" Height="21"/>
+                <Label Content="pt" DockPanel.Dock="Left"/>
+                <Grid/>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</Window>
