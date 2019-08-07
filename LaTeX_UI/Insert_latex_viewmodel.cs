@@ -58,6 +58,8 @@ namespace LaTeX_UI
 
         public int SelectedImageTypeIndex { get; set; }
 
+        public string StatusText { get; set; }
+
         public virtual bool Generate_Click()
         {
             return false;

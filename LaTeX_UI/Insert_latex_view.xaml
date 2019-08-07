@@ -41,7 +41,7 @@
                 <Label Content="Font size:" DockPanel.Dock="Left"/>
                 <TextBox DockPanel.Dock="Left" Width="75" VerticalContentAlignment="Center" Text="{Binding FontSizeString}" Height="21"/>
                 <Label Content="pt" DockPanel.Dock="Left"/>
-                <Grid/>
+                <Label Content="{Binding StatusText}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </DockPanel>
         </Grid>
     </Grid>
