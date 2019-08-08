@@ -23,7 +23,7 @@
                 <Label Content="Image Format:" DockPanel.Dock="Left"/>
                 <ComboBox DockPanel.Dock="Left" Width="100" ItemsSource="{Binding ImageTypes}" SelectedIndex="{Binding SelectedImageTypeIndex}" VerticalContentAlignment="Center"/>
                 <Label Content="DPI:" DockPanel.Dock="Left"/>
-                <TextBox Text="{Binding DPIString, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center" Width="100" DockPanel.Dock="Left" Height="21"/>
+                <TextBox Text="{Binding LatexData.DPIString, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center" Width="100" DockPanel.Dock="Left" Height="21"/>
                 <Grid/>
             </DockPanel>
         </Grid>
@@ -33,13 +33,13 @@
                      ScrollViewer.CanContentScroll="True"
                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
                      ScrollViewer.VerticalScrollBarVisibility="Auto"
-                     Text="{Binding LatexText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                     Text="{Binding LatexData.LatexText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="2" Height="30" Margin="5">
             <DockPanel LastChildFill="True">
                 <Button Click="Generate_Click" Content="Generate" DockPanel.Dock="Right" Width="75" Height="25"/>
                 <Label Content="Font size:" DockPanel.Dock="Left"/>
-                <TextBox DockPanel.Dock="Left" Width="75" VerticalContentAlignment="Center" Text="{Binding FontSizeString}" Height="21"/>
+                <TextBox DockPanel.Dock="Left" Width="75" VerticalContentAlignment="Center" Text="{Binding LatexData.FontSizeString}" Height="21"/>
                 <Label Content="pt" DockPanel.Dock="Left"/>
                 <Label Content="{Binding StatusText}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </DockPanel>

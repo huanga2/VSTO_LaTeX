@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -55,6 +56,7 @@
       <DependentUpon>Insert_latex_view.xaml</DependentUpon>
     </Compile>
     <Compile Include="Insert_latex_viewmodel.cs" />
+    <Compile Include="LatexData.cs" />
     <Compile Include="Latex_ToolChain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

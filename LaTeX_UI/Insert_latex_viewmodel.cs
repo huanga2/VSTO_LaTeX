@@ -14,47 +14,7 @@ namespace LaTeX_UI
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public string LatexText { get; set; } = @"\documentclass{article}
-\usepackage{amsmath}
-\pagestyle{empty}
-\begin{document}
-
-
-
-
-\end{document}";
-
-        public double fontSize = 20;
-        public string FontSizeString
-        {
-            get
-            {
-                return fontSize.ToString();
-            }
-
-            set
-            {
-                fontSize = double.TryParse(value, out fontSize) ? fontSize : 20;
-
-                fontSize = (fontSize > 0) ? fontSize : 20;
-            }
-        }
-
-        public int DPI = 1200;
-        public string DPIString
-        {
-            get
-            {
-                return DPI.ToString();
-            }
-
-            set
-            {
-                DPI = int.TryParse(value, out DPI) ? DPI : 1200;
-
-                DPI = (DPI > 0) ? DPI : 1200;
-            }
-        }
+        public LatexData LatexData { get; set; } = new LatexData();
 
         public List<string> ImageTypes { get; set; } = new List<string>() { "png", "svg" };
 
@@ -68,7 +28,7 @@ namespace LaTeX_UI
             {
                 var tempFileName = Path.GetTempPath() + "VSTO_latex";
 
-                File.WriteAllText(tempFileName + ".tex", LatexText);
+                File.WriteAllText(tempFileName + ".tex", LatexData.LatexText);
 
                 StatusText = "TEX ⇒ DVI";
                 await Task.Run(() => Latex_ToolChain.CreateDVI(tempFileName));
@@ -76,7 +36,7 @@ namespace LaTeX_UI
                 if (SelectedImageTypeIndex == 0)
                 {
                     StatusText = "DVI ⇒ PNG";
-                    Latex_ToolChain.CreatePNG(tempFileName, DPI);
+                    Latex_ToolChain.CreatePNG(tempFileName, LatexData.DPI);
                     DropImage(tempFileName + ".png", false);
                 }
                 else if (SelectedImageTypeIndex == 1)

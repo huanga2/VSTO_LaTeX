@@ -20,5 +20,18 @@ namespace VSTO_LaTeX
             Window win = new Insert_latex_view(new Visio_Insert_latex_viewmodel());
             win.ShowDialog();
         }
+
+        private void button2_Click(object sender, RibbonControlEventArgs e)
+        {
+            var currentShape = Globals.ThisAddIn.Application.ActiveWindow.Selection.PrimaryItem;
+
+            if (currentShape == null)
+            {
+                return;
+            }
+
+            Window win = new Insert_latex_view(new Visio_Insert_latex_viewmodel(currentShape));
+            win.ShowDialog();
+        }
     }
 }
