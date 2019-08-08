@@ -14,11 +14,19 @@ namespace LaTeX_UI
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public SettingsManager SettingsManager { get; set; } = new SettingsManager();
+
         public LatexData LatexData { get; set; } = new LatexData();
+
+        public bool EnableDPI { get => SelectedImageTypeIndex != 1; }
 
         public List<string> ImageTypes { get; set; } = new List<string>() { "png", "svg" };
 
-        public int SelectedImageTypeIndex { get; set; }
+        public int SelectedImageTypeIndex
+        {
+            get { return SettingsManager.Settings.DefaultImageType; }
+            set { SettingsManager.Settings.DefaultImageType = value; }
+        }
 
         public string StatusText { get; set; }
 

@@ -23,7 +23,7 @@ namespace VSTO_LaTeX
         {
         }
 
-        public Visio_Insert_latex_viewmodel(Visio.Shape shape)
+        public Visio_Insert_latex_viewmodel(Visio.Shape shape) : this()
         {
             selectedShape = shape;
 

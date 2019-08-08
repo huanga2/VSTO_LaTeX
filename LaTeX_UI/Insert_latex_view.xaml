@@ -21,9 +21,13 @@
         <Grid Grid.Row="0" Height="30" Margin="5">
             <DockPanel LastChildFill="True">
                 <Label Content="Image Format:" DockPanel.Dock="Left"/>
-                <ComboBox DockPanel.Dock="Left" Width="100" ItemsSource="{Binding ImageTypes}" SelectedIndex="{Binding SelectedImageTypeIndex}" VerticalContentAlignment="Center"/>
+                <ComboBox DockPanel.Dock="Left" Width="100" ItemsSource="{Binding ImageTypes}"
+                          SelectedIndex="{Binding SelectedImageTypeIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                          VerticalContentAlignment="Center"/>
                 <Label Content="DPI:" DockPanel.Dock="Left"/>
-                <TextBox Text="{Binding LatexData.DPIString, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center" Width="100" DockPanel.Dock="Left" Height="21"/>
+                <TextBox Text="{Binding LatexData.DPIString, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                         IsEnabled="{Binding EnableDPI}"
+                         VerticalAlignment="Center" Width="100" DockPanel.Dock="Left" Height="21"/>
                 <Grid/>
             </DockPanel>
         </Grid>

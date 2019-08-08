@@ -59,6 +59,7 @@
     <Compile Include="LatexData.cs" />
     <Compile Include="Latex_ToolChain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Insert_latex_view.xaml">
