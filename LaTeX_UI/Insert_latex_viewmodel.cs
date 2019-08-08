@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Windows;
 
 namespace LaTeX_UI
 {
@@ -38,7 +40,7 @@ namespace LaTeX_UI
             }
         }
 
-        public double DPI = 1200;
+        public int DPI = 1200;
         public string DPIString
         {
             get
@@ -48,7 +50,7 @@ namespace LaTeX_UI
 
             set
             {
-                DPI = double.TryParse(value, out DPI) ? DPI : 1200;
+                DPI = int.TryParse(value, out DPI) ? DPI : 1200;
 
                 DPI = (DPI > 0) ? DPI : 1200;
             }
@@ -60,9 +62,43 @@ namespace LaTeX_UI
 
         public string StatusText { get; set; }
 
-        public virtual bool Generate_Click()
+        public virtual async Task<bool> Generate_ClickAsync()
         {
-            return false;
+            try
+            {
+                var tempFileName = Path.GetTempPath() + "VSTO_latex";
+
+                File.WriteAllText(tempFileName + ".tex", LatexText);
+
+                StatusText = "TEX ⇒ DVI";
+                await Task.Run(() => Latex_ToolChain.CreateDVI(tempFileName));
+
+                if (SelectedImageTypeIndex == 0)
+                {
+                    StatusText = "DVI ⇒ PNG";
+                    Latex_ToolChain.CreatePNG(tempFileName, DPI);
+                    DropImage(tempFileName + ".png", false);
+                }
+                else if (SelectedImageTypeIndex == 1)
+                {
+                    StatusText = "DVI ⇒ SVG";
+                    await Task.Run(() => Latex_ToolChain.CreateSVG(tempFileName));
+
+                    DropImage(tempFileName + ".svg", true);
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                var msgBox = MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                return false;
+            }
+        }
+
+        public virtual void DropImage(string fileName, bool isSvg)
+        {
+            throw new NotImplementedException();
         }
 
         public Insert_latex_viewmodel() { }

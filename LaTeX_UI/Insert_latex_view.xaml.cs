@@ -29,9 +29,9 @@ namespace LaTeX_UI
             this.DataContext = this.viewmodel;
         }
 
-        private void Generate_Click(object sender, RoutedEventArgs e)
+        private async void Generate_Click(object sender, RoutedEventArgs e)
         {
-            if (viewmodel.Generate_Click())
+            if (await viewmodel.Generate_ClickAsync())
             {
                 this.Close();
             }

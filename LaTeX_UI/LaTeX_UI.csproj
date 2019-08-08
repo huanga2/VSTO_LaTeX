@@ -55,6 +55,7 @@
       <DependentUpon>Insert_latex_view.xaml</DependentUpon>
     </Compile>
     <Compile Include="Insert_latex_viewmodel.cs" />
+    <Compile Include="Latex_ToolChain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
