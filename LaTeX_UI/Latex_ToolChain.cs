@@ -16,7 +16,7 @@ namespace LaTeX_UI
             {
                 WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
                 WorkingDirectory = Path.GetTempPath(),
-                FileName = "pdflatex.exe",
+                FileName = "latex.exe",
                 Arguments = String.Format("-shell-escape -output-format dvi -interaction=batchmode \"{0}.tex\"", tempFileName)
             };
             process.StartInfo = startInfo;
